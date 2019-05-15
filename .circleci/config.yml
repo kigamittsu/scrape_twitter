@@ -5,9 +5,10 @@ jobs: # A basic unit of work in a run
     working_directory: ~/project
     docker: # run the steps with Docker
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
-      - image: circleci/python:3.7.2
+      - image: circleci/python:3.7.2-browsers
     steps: # steps that comprise the `build` job
       - checkout # check out source code to working directory
+      - run: mkdir test-results
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run:
@@ -19,7 +20,7 @@ jobs: # A basic unit of work in a run
             sudo pip install chromedriver-binary
       - run:
           command: |
-            python -m unittest tests.test
+            python -m unittest tests.test_api
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
