@@ -62,19 +62,19 @@ class Scraper():
                 'tweet-text').text
 
             likes = tweet.find_element_by_class_name(
-                'js-actionFavorite').find_element_by_class_name('ProfileTweet-actionCountForPresentation').text
+                'js-actionFavorite').find_element_by_class_name('ProfileTweet-actionCount').get_attribute('data-tweet-stat-count')
             if not likes:
                 likes = '0'
             response['likes'] = int(likes.replace(',', ''))
 
             replies = tweet.find_element_by_class_name(
-                'js-actionReply').find_element_by_class_name('ProfileTweet-actionCountForPresentation').text
+                'js-actionReply').find_element_by_class_name('ProfileTweet-actionCount').get_attribute('data-tweet-stat-count')
             if not replies:
                 replies = '0'
             response['replies'] = int(replies.replace(',', ''))
 
             retweets = tweet.find_element_by_class_name(
-                'js-actionRetweet').find_element_by_class_name('ProfileTweet-actionCountForPresentation').text
+                'js-actionRetweet').find_element_by_class_name('ProfileTweet-actionCount').get_attribute('data-tweet-stat-count')
             if not retweets:
                 retweets = '0'
             response['retweets'] = int(retweets.replace(',', ''))
