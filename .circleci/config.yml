@@ -20,6 +20,7 @@ jobs: # A basic unit of work in a run
             sudo pip install chromedriver-binary
       - run:
           command: |
+            python server.py
             python -m unittest tests.test_api
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
