@@ -18,8 +18,15 @@ jobs: # A basic unit of work in a run
             sudo pip install requests
             sudo pip install selenium
             sudo pip install chromedriver-binary
-      - run: python server.py &
-      - run: python -m unittest tests.test_api
+      - run:
+          name: Start API
+          command: |
+            python server.py
+          background: true
+      - run:
+          name: Run test
+          command: |
+            python -m unittest tests.test_api
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
