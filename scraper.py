@@ -19,7 +19,7 @@ class Scraper():
 
     def get_page(self, url):
         options = Options()
-        options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+        #options.binary_location = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
         options.add_argument('--headless')
         driver = webdriver.Chrome(chrome_options=options)
         driver.get(url)
