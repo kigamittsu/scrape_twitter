@@ -1,10 +1,8 @@
 # scrape_twitter
 
-This API can search the tweet information from twitter by hashtag or username. 
+This API can search the tweet information from twitter by hashtag or username.
 
 _No need authentication_
-
-
 
 ## Prerequisites
 
@@ -19,6 +17,7 @@ this application depends on the following libraries.
 | requests            | 2.21.0         |
 | selenium            | 3.141.0        |
 | chromedriver-binary | 73.0.3683.68.0 |
+| gunicorn            | 19.9.0         |
 
 _Note: You have to download the chromedriver-binary which has same major version of your chrome browser. If you want to check the chrome browser version, you can check it in your browser_
 
@@ -45,13 +44,19 @@ pip install requests
 4. Install the selenium
 
 ```
-sudo pip install selenium
+pip install selenium
 ```
 
 5. Install the chromedriver-binary
 
 ```
-sudo pip install chromedriver-binary=="{Your Chrome version}"
+pip install chromedriver-binary=="{Your Chrome version}"
+```
+
+6. Install the gunicorn
+
+```
+pip install gunicorn
 ```
 
 ## Usage for API
@@ -66,7 +71,7 @@ git clone https://github.com/kigamittsu/scrape_twitter.git
 
 ```
 cd ~/scrape_twitter
-python server.js
+gunicorn server:app
 ```
 
 3. Now you can call this API.
@@ -76,7 +81,7 @@ python server.js
 1. Run the server
 
 ```
-python server.js
+gunicorn server:app
 ```
 
 2. Run the test
@@ -126,13 +131,13 @@ If you want to test this API, we highly recommend to use the [Postman](https://w
 Sample requests of _/hashtags/{hashtagname}_
 
 ```
-http://127.0.0.1:5000/hashtags/twitter?limit=20
+http://127.0.0.1:8000/hashtags/twitter?limit=20
 ```
 
 Sample requests of _/users/{username}_
 
 ```
-http://127.0.0.1:5000/users/twitter?limit=20
+http://127.0.0.1:8000/users/twitter?limit=20
 ```
 
 ### Sample Response

@@ -11,32 +11,29 @@ parser.add_argument('limit', type=int, default=30,
 scraper = Scraper()
 
 
-def create_app():
+class TweetsByHashtag(Resource):
+    def get(self, tagname):
+        args = parser.parse_args()
+        limit = args['limit']
+        url = URL_HASHTAG + tagname
+        response = scraper.scrape_from_twitter(url, limit)
+        return response
 
-    class TweetsByHashtag(Resource):
-        def get(self, tagname):
-            args = parser.parse_args()
-            limit = args['limit']
-            url = URL_HASHTAG + tagname
-            response = scraper.scrape_from_twitter(url, limit)
-            return response
 
-    class TweetsByUser(Resource):
-        def get(self, username):
-            args = parser.parse_args()
-            limit = args['limit']
-            url = URL_USER + username
-            response = scraper.scrape_from_twitter(url, limit)
-            return response
+class TweetsByUser(Resource):
+    def get(self, username):
+        args = parser.parse_args()
+        limit = args['limit']
+        url = URL_USER + username
+        response = scraper.scrape_from_twitter(url, limit)
+        return response
 
-    app = Flask(__name__)
-    api = Api(app)
-    api.add_resource(TweetsByHashtag, '/hashtags/<string:tagname>')
-    api.add_resource(TweetsByUser, '/users/<string:username>')
 
-    return app
+app = Flask(__name__)
+api = Api(app)
+api.add_resource(TweetsByHashtag, '/hashtags/<string:tagname>')
+api.add_resource(TweetsByUser, '/users/<string:username>')
 
 
 if __name__ == '__main__':
-    app = create_app()
-    app.run(debug=True)
+    app.run()

@@ -1,8 +1,8 @@
 import unittest
 import requests
 
-TEST_URL_HASHTAG = 'http://127.0.0.1:5000/hashtags/twitter'
-TEST_URL_USER = 'http://127.0.0.1:5000/users/twitter'
+TEST_URL_HASHTAG = 'http://127.0.0.1:8000/hashtags/twitter'
+TEST_URL_USER = 'http://127.0.0.1:8000/users/twitter'
 RESPONSE_KEYS = {'account', 'date', 'hashtags',
                  'text', 'likes', 'replies', 'retweets'}
 

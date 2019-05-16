@@ -18,10 +18,11 @@ jobs: # A basic unit of work in a run
             sudo pip install requests
             sudo pip install selenium
             sudo pip install chromedriver-binary==73.0.3683.68.0
+            sudo pip install gunicorn
       - run:
           name: Start API
           command: |
-            python server.py
+            gunicorn server:app
           background: true
       - run:
           name: Wait for APP
