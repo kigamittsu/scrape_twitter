@@ -27,7 +27,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: Wait for APP
           # preinstalled in circleci/* docker image
-          command: dockerize -wait tcp://127.0.0.1:5000 -timeout 120s
+          command: dockerize -wait tcp://127.0.0.1:8000 -timeout 120s
       - run:
           name: Run test
           command: |
