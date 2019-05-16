@@ -1,28 +1,25 @@
 # scrape_twitter
 
 This API can search the tweet information from twitter by hashtag or username.
+_No need authentication_
 
 You can test this API at Heroku!
 
 ## Prerequisites
 
-If you want to use this API in local, please install the dependencies using pip or other dependencies manager.
+If you want to use this API in local, please install the packages using pip or other package manager.
 
 this application depends on the following libraries.
 
 | Library             | version        |
 | ------------------- | -------------- |
-| flask               | bbb            |
-| flask_restful       | bbb            |
-| requests            | bbb            |
-| selenium            | bbb            |
+| flask               | 1.0.2          |
+| flask_restful       | 0.3.7          |
+| requests            | 2.21.0         |
+| selenium            | 3.141.0        |
 | chromedriver-binary | 73.0.3683.68.0 |
 
-_Note: You have to download the chromedriver-binary which has same major version of your chrome browser. If you want to check the chrome browser version, you can use the following command._
-
-```
-google-chrome --version
-```
+_Note: You have to download the chromedriver-binary which has same major version of your chrome browser. If you want to check the chrome browser version, you can check it in your browser_
 
 The following examples is using pip to install the dependencies.
 
@@ -89,15 +86,37 @@ python -m unittest tests.test_api
 
 ## API Design
 
-### API Definition
+### /hashtags/{hashtagname}?{limit}
 
-| Library             | version        |
-| ------------------- | -------------- |
-| flask               | bbb            |
-| flask_restful       | bbb            |
-| requests            | bbb            |
-| selenium            | bbb            |
-| chromedriver-binary | 73.0.3683.68.0 |
+Get the tweets information which has target hashtag name
+
+#### Resource
+
+| Resource    | Description         |
+| ----------- | ------------------- |
+| hashtagname | Target hashtag name |
+
+#### Request parameter
+
+| Request Parameter | Type    | Description                                                   |
+| ----------------- | ------- | ------------------------------------------------------------- |
+| limit (Optional)  | Integer | Specifies the number of tweets to retrieve, the default is 30 |
+
+### /users/{user}?{limit}
+
+Get the tweets information which has target user name
+
+#### Resource
+
+| Resource | Description      |
+| -------- | ---------------- |
+| username | Target user name |
+
+#### Request parameter
+
+| Request Parameter | Type    | Description                                                   |
+| ----------------- | ------- | ------------------------------------------------------------- |
+| limit (Optional)  | Integer | Specifies the number of tweets to retrieve, the default is 30 |
 
 ### Sample Requests
 
@@ -106,20 +125,41 @@ If you want to test this API, we highly recommend to use the [Postman]() or [Ins
 Sample requests of _/hashtags/{hashtagname}_
 
 ```
-http://127.0.0.1:5000/hashtags/twitter
+http://127.0.0.1:5000/hashtags/twitter?limit=20
 ```
 
 Sample requests of _/users/{username}_
 
 ```
-http://127.0.0.1:5000/users/twitter
+http://127.0.0.1:5000/users/twitter?limit=20
 ```
 
 ### Sample Response
 
+```
+[
+  {
+    "account": {
+      "fullname": "foo bar",
+      "href": "https://twitter.com/foobar",
+      "user_id": "342384"
+    },
+    "date": "16:23 - 2019年5月15日",
+    "hashtags": [
+      "#Twitter"
+    ],
+    "text": "Sample text",
+    "likes": 10,
+    "replies": 4,
+    "retweets": 5
+  },
+  ...
+]
+```
+
 ## Feature Plan
 
-1. Response speed (more quick)
+1. Improve response speed (more quick)
 2. Add other endpoints
 3. Write more test
 
