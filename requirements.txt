@@ -1,0 +1,5 @@
+Flask==1.0.2
+flask_restful==0.3.7
+requests==2.21.0
+selenium==3.141.0
+chromedriver-binary==74.0.3729.6.0
