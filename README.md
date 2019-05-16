@@ -1,9 +1,10 @@
 # scrape_twitter
 
-This API can search the tweet information from twitter by hashtag or username.
+This API can search the tweet information from twitter by hashtag or username. 
+
 _No need authentication_
 
-You can test this API at Heroku!
+
 
 ## Prerequisites
 
@@ -120,7 +121,7 @@ Get the tweets information which has target user name
 
 ### Sample Requests
 
-If you want to test this API, we highly recommend to use the [Postman]() or [Insomnia]()
+If you want to test this API, we highly recommend to use the [Postman](https://www.getpostman.com/) or [Insomnia](https://insomnia.rest/)
 
 Sample requests of _/hashtags/{hashtagname}_
 
